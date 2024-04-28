@@ -5,10 +5,8 @@ import { Plus } from "lucide-react-native";
 import {
   BottomSheetModal,
   BottomSheetView,
-  BottomSheetModalProvider,
 } from "@gorhom/bottom-sheet";
 export default function Add() {
-  const [modalVisible, setModalVisible] = React.useState(false);
   // ref
   const bottomSheetModalRef = React.useRef<BottomSheetModal>(null);
 
@@ -42,7 +40,7 @@ export default function Add() {
         onChange={handleSheetChanges}
       >
         <BottomSheetView style={styles.contentContainer}>
-          <Text>Awesome 🎉</Text>
+          <Text>Add Modal</Text>
         </BottomSheetView>
       </BottomSheetModal>
     </>
