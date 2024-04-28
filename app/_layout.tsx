@@ -28,6 +28,10 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   const [loaded, error] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+    SpaceBold: require("../assets/fonts/SpaceBold.ttf"),
+    SpaceLight: require("../assets/fonts/SpaceLight.ttf"),
+    SpaceMedium: require("../assets/fonts/SpaceMedium.ttf"),
+    SpaceSemiBold: require("../assets/fonts/SpaceSemiBold.ttf"),
     ...FontAwesome.font,
   });
 

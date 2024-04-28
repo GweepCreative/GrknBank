@@ -3,10 +3,11 @@ import React from "react";
 import MasterCard from "./Icons/mastercard";
 import PaparaLogo from "./Icons/papara";
 import ChipIcon from "./Icons/Chip";
+import { Fonts } from "@/utils/Fonts";
 
 export default function CreditCard({ balance }: { balance: number }) {
   return (
-    <View className="py-6 px-6 flex-col bg-[#1D1D21] w-full h-48 rounded-2xl overflow-hidden flex justify-between">
+    <View className="py-6 px-6 flex-col bg-[#1D1D21] w-full h-52 rounded-2xl overflow-hidden flex justify-between">
       {/* BANK */}
       <View className="flex flex-row justify-between">
         <MasterCard />
@@ -20,12 +21,12 @@ export default function CreditCard({ balance }: { balance: number }) {
 
       {/* BALANCE */}
       <View className="flex flex-col justify-center space-y-2">
-        <Text className="text-white" style={{ fontFamily: "SpaceMono" }}>
+        <Text className="text-white" style={{ fontFamily: Fonts.SpaceMono }}>
           Available Balance
         </Text>
         <Text
           className="text-white text-3xl"
-          style={{ fontFamily: "SpaceMono" }}
+          style={{ fontFamily: Fonts.SpaceBold }}
         >
           {new Intl.NumberFormat("tr-TR", {
             style: "currency",
