@@ -1,3 +1,4 @@
+import ActivitesItem from "@/components/ActivitesItem";
 import CreditCard from "@/components/CreditCard";
 import Options from "@/components/Options";
 import { Fonts } from "@/utils/Fonts";
@@ -14,11 +15,22 @@ export default function MainPage() {
       </View>
 
       <View className="w-full">
-        <CreditCard balance={4001} />
+        <CreditCard balance={40000} />
       </View>
 
       <View className="w-full px-6 m-6">
         <Options />
+      </View>
+
+      <View className="w-full p-4">
+        <View className="flex flex-row justify-between items-center">
+          <Text className="text-2xl" style={{ fontFamily: Fonts.SpaceMedium }}>
+            Activites
+          </Text>
+          <Text style={{ fontFamily: Fonts.SpaceMono }}>Today</Text>
+        </View>
+        <ActivitesItem title="Netflix" amount={15.99} cardNumber="2732" paymentType="Subs" date="Today" />
+        <ActivitesItem title="Dad - FAST" amount={3000} date="Today" />
       </View>
     </View>
   );
