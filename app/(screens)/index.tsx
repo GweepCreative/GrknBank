@@ -2,8 +2,8 @@ import ActivitesItem from "@/components/ActivitesItem";
 import CreditCard from "@/components/CreditCard";
 import Options from "@/components/Options";
 import { Fonts } from "@/utils/Fonts";
-
-import { Text, View } from "react-native";
+import { FlashList } from "@shopify/flash-list";
+import { FlatList, Text, View } from "react-native";
 
 export default function MainPage() {
   return (
@@ -22,15 +22,32 @@ export default function MainPage() {
         <Options />
       </View>
 
-      <View className="w-full p-4">
+      <View className="w-full h-full  p-4">
         <View className="flex flex-row justify-between items-center">
           <Text className="text-2xl" style={{ fontFamily: Fonts.SpaceMedium }}>
             Activites
           </Text>
           <Text style={{ fontFamily: Fonts.SpaceMono }}>Today</Text>
         </View>
-        <ActivitesItem title="Netflix" amount={15.99} cardNumber="2732" paymentType="Subs" date="Today" />
-        <ActivitesItem title="Dad - FAST" amount={3000} date="Today" />
+        <FlashList
+          estimatedItemSize={6}
+          className="h-full w-full "
+          data={[
+            {
+              title: "Netflix",
+              amount: 15.99,
+              cardNumber: "2732",
+              paymentType: "Subs",
+              date: "Today",
+            },
+            {
+              title: "Dad - Fast",
+              amount: 3000,
+              date: "Today",
+            },
+          ]}
+          renderItem={({ item }) => <ActivitesItem data={item} />}
+        />
       </View>
     </View>
   );
