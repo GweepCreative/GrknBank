@@ -1,5 +1,6 @@
 /// <reference types="nativewind/types" />
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import {
   DarkTheme,
   DefaultTheme,
@@ -9,6 +10,7 @@ import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -54,14 +56,15 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
-
   return (
     // <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-    
+    <GestureHandlerRootView style={{ flex: 1 }}>
+       <BottomSheetModalProvider>
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="(screens)" options={{ headerShown: false }} />
       </Stack>
-  
+      </BottomSheetModalProvider>
+    </GestureHandlerRootView>
     // </ThemeProvider>
   );
 }

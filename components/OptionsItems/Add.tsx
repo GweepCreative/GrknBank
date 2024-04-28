@@ -1,17 +1,62 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import React from "react";
 import { Fonts } from "@/utils/Fonts";
 import { Plus } from "lucide-react-native";
-
+import {
+  BottomSheetModal,
+  BottomSheetView,
+  BottomSheetModalProvider,
+} from "@gorhom/bottom-sheet";
 export default function Add() {
+  const [modalVisible, setModalVisible] = React.useState(false);
+  // ref
+  const bottomSheetModalRef = React.useRef<BottomSheetModal>(null);
+
+  // variables
+  const snapPoints = React.useMemo(() => [80, "50%", "90%"], []);
+
+  // callbacks
+  const handlePresentModalPress = React.useCallback(() => {
+    bottomSheetModalRef.current?.present();
+  }, []);
+  const handleSheetChanges = React.useCallback((index: number) => {
+    console.log("handleSheetChanges", index);
+  }, []);
   return (
-    <TouchableOpacity className="flex flex-col justify-center items-center space-y-2">
-      <View className="bg-[#EBB2FF] flex justify-center items-center rounded-full p-3">
-        <Plus color="black" size={24} />
-      </View>
-      <Text className="text-zinc-500" style={{ fontFamily: Fonts.SpaceMono }}>
-        Add
-      </Text>
-    </TouchableOpacity>
+    <>
+      <TouchableOpacity
+        onPress={handlePresentModalPress}
+        className="flex flex-col justify-center items-center space-y-2"
+      >
+        <View className="bg-[#EBB2FF] flex justify-center items-center rounded-full p-3">
+          <Plus color="black" size={24} />
+        </View>
+        <Text className="text-zinc-500" style={{ fontFamily: Fonts.SpaceMono }}>
+          Add
+        </Text>
+      </TouchableOpacity>
+      <BottomSheetModal
+        ref={bottomSheetModalRef}
+        index={1}
+        snapPoints={snapPoints}
+        onChange={handleSheetChanges}
+      >
+        <BottomSheetView style={styles.contentContainer}>
+          <Text>Awesome 🎉</Text>
+        </BottomSheetView>
+      </BottomSheetModal>
+    </>
   );
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 24,
+    justifyContent: "center",
+    backgroundColor: "grey",
+  },
+  contentContainer: {
+    flex: 1,
+    alignItems: "center",
+  },
+});
