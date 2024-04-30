@@ -8,7 +8,7 @@ export default function Cards() {
   const bottomSheetModalRef = React.useRef<BottomSheetModal>(null);
 
   // variables
-  const snapPoints = React.useMemo(() => [80, "50%", "90%"], []);
+  const snapPoints = React.useMemo(() => [80, "50%"], []);
 
   // callbacks
   const handlePresentModalPress = React.useCallback(() => {
