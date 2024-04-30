@@ -78,7 +78,7 @@ export default function Add() {
             className="text-2xl p-1"
             style={{ fontFamily: Fonts.SpaceBold }}
           >
-            Add Modal
+            Add Balance
           </Text>
           <View className="flex flex-col items-center justify-center w-full px-8 space-y-4">
             <ModalTextInput

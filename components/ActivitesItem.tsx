@@ -50,6 +50,7 @@ export default function ActivitesItem({ data }: { data: Props }) {
           <View className=" flex flex-row  items-center w-16 h-6 bg-zinc-200 rounded">
             <MasterCard
               className="-left-2"
+              
               style={{
                 transform: [{ scale: 0.5 }],
               }}

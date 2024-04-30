@@ -1,6 +1,7 @@
 import { View, Text, TextInput, KeyboardTypeOptions } from "react-native";
 import React from "react";
 import { Fonts } from "@/utils/Fonts";
+import classNames from "classnames";
 
 export default function ModalTextInput({
   onChangeText,
@@ -8,16 +9,17 @@ export default function ModalTextInput({
   placeholder,
   keyboardType,
   title,
-  ...props
+  className,
 }: {
   onChangeText: (text: string) => void;
   value: string;
   placeholder: string;
   keyboardType: KeyboardTypeOptions;
   title: string;
+  className?: string;
 }) {
   return (
-    <View className="w-full space-y-2" {...props}>
+    <View className={classNames("w-full space-y-2", className)}>
       <Text className="text-xl" style={{ fontFamily: Fonts.SpaceBold }}>
         {title}
       </Text>
