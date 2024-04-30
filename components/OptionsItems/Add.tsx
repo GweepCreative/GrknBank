@@ -10,7 +10,12 @@ import React, { useEffect } from "react";
 import { Fonts } from "@/utils/Fonts";
 import { Plus } from "lucide-react-native";
 import { BottomSheetModal, BottomSheetView } from "@gorhom/bottom-sheet";
+import ModalTextInput from "../OptionsItemsModals/CustomTextInput";
 export default function Add() {
+  //states
+  const [sender, setSender] = React.useState("");
+  const [description, setDescription] = React.useState("");
+  const [amount, setAmount] = React.useState("");
   // ref
   const bottomSheetModalRef = React.useRef<BottomSheetModal>(null);
 
@@ -21,9 +26,12 @@ export default function Add() {
   const handlePresentModalPress = React.useCallback(() => {
     bottomSheetModalRef.current?.present();
   }, []);
-  const handleSheetChanges = React.useCallback((index: number) => {
-    console.log("handleSheetChanges", index);
+  const closeModal = React.useCallback(() => {
+    bottomSheetModalRef.current?.close();
   }, []);
+  // const handleSheetChanges = React.useCallback((index: number) => {
+  // console.log("handleSheetChanges", index);
+  // }, []);
 
   // keyboard
   useEffect(() => {
@@ -63,7 +71,7 @@ export default function Add() {
         ref={bottomSheetModalRef}
         index={0}
         snapPoints={snapPoints}
-        onChange={handleSheetChanges}
+        // onChange={handleSheetChanges}
       >
         <BottomSheetView style={styles.contentContainer}>
           <Text
@@ -72,36 +80,35 @@ export default function Add() {
           >
             Add Modal
           </Text>
-          <View className="flex flex-col items-center justify-center w-full px-8 space-y-3">
-            <View className="w-full  space-y-2">
-              <Text className="text-xl" style={{ fontFamily: Fonts.SpaceBold }}>
-                Sender
-              </Text>
-              <TextInput
-                placeholder="ex. Dad"
-                className="bg-[#EBE8E8] w-full p-2 rounded-lg text-black"
-              />
-            </View>
-            <View className="w-full space-y-2">
-              <Text className="text-xl" style={{ fontFamily: Fonts.SpaceBold }}>
-                Description
-              </Text>
-              <TextInput
-                placeholder="ex. FAST"
-                className="bg-[#EBE8E8] w-full p-2 rounded-lg text-black"
-              />
-            </View>
-            <View className="w-full space-y-2">
-              <Text className="text-xl" style={{ fontFamily: Fonts.SpaceBold }}>
-                Amount to be added
-              </Text>
-              <TextInput
-                keyboardType="number-pad"
-                placeholder="ex. 3000"
-                className="bg-[#EBE8E8] w-full p-2 rounded-lg text-black"
-              />
-            </View>
-            <TouchableOpacity className="w-full items-center justify-center bg-black p-3 rounded-lg overflow-hidden">
+          <View className="flex flex-col items-center justify-center w-full px-8 space-y-4">
+            <ModalTextInput
+              title="Sender"
+              keyboardType="default"
+              onChangeText={(text) => setSender(text)}
+              placeholder="ex. Dad"
+              value={sender}
+              key={"SenderInput"}
+            />
+            <ModalTextInput
+              title="Description"
+              keyboardType="default"
+              onChangeText={(text) => setDescription(text)}
+              placeholder="ex. FAST"
+              value={description}
+              key={"DescriptionInput"}
+            />
+            <ModalTextInput
+              title="Amount to be added"
+              keyboardType="number-pad"
+              onChangeText={(text) => setAmount(text)}
+              placeholder="ex. 3000"
+              value={amount}
+              key={"AmountInput"}
+            />
+            <TouchableOpacity
+              onPress={closeModal}
+              className="w-full items-center justify-center bg-black p-3 rounded-lg overflow-hidden"
+            >
               <Text
                 className="text-white"
                 style={{ fontFamily: Fonts.SpaceSemiBold }}
