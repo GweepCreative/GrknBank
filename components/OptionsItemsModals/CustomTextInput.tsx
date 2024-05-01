@@ -19,7 +19,7 @@ export default function ModalTextInput({
   className?: string;
 }) {
   return (
-    <View className={classNames("w-full space-y-2", className)}>
+    <View className={classNames("w-full space-y-2 my-1", className)}>
       <Text className="text-xl" style={{ fontFamily: Fonts.SpaceBold }}>
         {title}
       </Text>

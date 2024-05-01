@@ -1,22 +1,37 @@
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Dimensions,
+  FlatList,
+} from "react-native";
 import React from "react";
 import { Fonts } from "@/utils/Fonts";
-import { CreditCard, Plus } from "lucide-react-native";
-import { BottomSheetModal, BottomSheetView } from "@gorhom/bottom-sheet";
+import { CirclePlus, CreditCard, Plus } from "lucide-react-native";
+import {
+  BottomSheetModal,
+  BottomSheetScrollView,
+  BottomSheetView,
+} from "@gorhom/bottom-sheet";
+import { FlashList } from "@shopify/flash-list";
+import { MasterCardColor } from "../Icons/mastercard";
+import { ScrollView } from "react-native-gesture-handler";
+import CardsListItem from "../CardsListItem";
 export default function Cards() {
   // ref
   const bottomSheetModalRef = React.useRef<BottomSheetModal>(null);
 
   // variables
-  const snapPoints = React.useMemo(() => [80, "50%"], []);
+  const snapPoints = React.useMemo(() => ["50%"], []);
 
   // callbacks
   const handlePresentModalPress = React.useCallback(() => {
     bottomSheetModalRef.current?.present();
   }, []);
-  const handleSheetChanges = React.useCallback((index: number) => {
-    console.log("handleSheetChanges", index);
-  }, []);
+  // const handleSheetChanges = React.useCallback((index: number) => {
+  //   console.log("handleSheetChanges", index);
+  // }, []);
   return (
     <>
       <TouchableOpacity
@@ -32,17 +47,56 @@ export default function Cards() {
       </TouchableOpacity>
       <BottomSheetModal
         ref={bottomSheetModalRef}
-        index={1}
+        index={0}
         snapPoints={snapPoints}
-        onChange={handleSheetChanges}
+        // onChange={handleSheetChanges}
       >
-        <BottomSheetView style={styles.contentContainer}>
-          <Text>Card Modal</Text>
-        </BottomSheetView>
+        <View className="flex flex-row items-center justify-between mx-6">
+          <Text
+            className="text-2xl p-1 self-center"
+            style={{ fontFamily: Fonts.SpaceBold }}
+          >
+            Cards
+          </Text>
+          <TouchableOpacity>
+            <CirclePlus color={"#000"} />
+          </TouchableOpacity>
+        </View>
+        <BottomSheetScrollView style={{ margin: 10 }}>
+          <FlashList
+            estimatedItemSize={100}
+            contentContainerStyle={{ paddingHorizontal: 14 }}
+            keyExtractor={(item, index) => index.toString()}
+            data={CardLsist.flatMap((item) => Array(4).fill(item))}
+            renderItem={({ item, index }) => (
+              <CardsListItem item={item} index={index} />
+            )}
+          />
+        </BottomSheetScrollView>
       </BottomSheetModal>
     </>
   );
 }
+const CardLsist = [
+  {
+    id: 1,
+    title: "Card 1",
+    first4: "5313",
+    last4: "1234",
+  },
+  {
+    id: 2,
+    title: "Card 2",
+    first4: "5313",
+    last4: "1234",
+  },
+  {
+    id: 3,
+    title: "Card 3",
+    first4: "5313",
+    last4: "1234",
+  },
+];
 const styles = StyleSheet.create({
   container: {
     flex: 1,

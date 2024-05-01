@@ -10,10 +10,11 @@ import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
+import { LogBox } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { SafeAreaView } from "react-native-safe-area-context";
-
+LogBox.ignoreLogs(['Remote debugger', 'VirtualizedLists should never be nested',"FlashList's rendered size is not usable. Either the height or width is too small (<2px). Please make sure that the parent view of the list has a valid size. FlashList will match the size of the parent."]);
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,

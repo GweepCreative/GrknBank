@@ -11,7 +11,7 @@ import { Fonts } from "@/utils/Fonts";
 import { Minus } from "lucide-react-native";
 import { BottomSheetModal, BottomSheetView } from "@gorhom/bottom-sheet";
 import ModalTextInput from "../OptionsItemsModals/CustomTextInput";
-import MasterCard from "../Icons/mastercard";
+import MasterCard, { MasterCardColor } from "../Icons/mastercard";
 export default function Remove() {
   //states
   const [payout, setPayout] = React.useState("");
@@ -74,76 +74,78 @@ export default function Remove() {
         snapPoints={snapPoints}
         // onChange={handleSheetChanges}
       >
-        <BottomSheetView style={styles.contentContainer}>
-          <Text
-            className="text-2xl p-1"
-            style={{ fontFamily: Fonts.SpaceBold }}
-          >
-            Remove Balance
-          </Text>
-          <View className="flex flex-col items-center justify-center w-full px-8 space-y-4">
-            <ModalTextInput
-              title="Payout"
-              keyboardType="default"
-              onChangeText={(text) => setPayout(text)}
-              placeholder="ex. Netflix"
-              value={payout}
-              key={"PayoutInput"}
-            />
-            <ModalTextInput
-              title="Description"
-              keyboardType="default"
-              onChangeText={(text) => setDescription(text)}
-              placeholder="ex. Subs"
-              value={description}
-              key={"DescriptionInput"}
-            />
-            <View className="flex flex-row w-full">
-              <View className="flex flex-col w-1/2">
-                <Text
-                  className="text-xl"
-                  style={{ fontFamily: Fonts.SpaceBold }}
-                >
-                  Amount
-                </Text>
+        <BottomSheetView>
+          <View className="w-full items-center justify-center flex flex-col ">
+            <Text
+              className="text-2xl p-1"
+              style={{ fontFamily: Fonts.SpaceBold }}
+            >
+              Remove Balance
+            </Text>
+            <View className="flex flex-col items-center justify-center w-full px-8 space-y-4">
+              <ModalTextInput
+                title="Payout"
+                keyboardType="default"
+                onChangeText={(text) => setPayout(text)}
+                placeholder="ex. Netflix"
+                value={payout}
+                key={"PayoutInput"}
+              />
+              <ModalTextInput
+                title="Description"
+                keyboardType="default"
+                onChangeText={(text) => setDescription(text)}
+                placeholder="ex. Subs"
+                value={description}
+                key={"DescriptionInput"}
+              />
+              <View className="flex flex-row w-full space-x-2">
+                <View className="flex flex-col w-1/2">
+                  <Text
+                    className="text-xl"
+                    style={{ fontFamily: Fonts.SpaceBold }}
+                  >
+                    Amount
+                  </Text>
 
-                <TextInput
-                  keyboardType={"number-pad"}
-                  placeholder={"ex. 3000"}
-                  onChangeText={(text) => setAmount(text)}
-                  value={amount}
-                  style={{ fontFamily: Fonts.SpaceMono }}
-                  className="bg-[#EBE8E8] w-full p-2 rounded-lg text-black"
-                />
-              </View>
+                  <TextInput
+                    keyboardType={"number-pad"}
+                    placeholder={"ex. 3000"}
+                    onChangeText={(text) => setAmount(text)}
+                    value={amount}
+                    style={{ fontFamily: Fonts.SpaceMono }}
+                    className="bg-[#EBE8E8] w-full p-2 rounded-lg text-black"
+                  />
+                </View>
 
-              <View className="flex flex-col w-full">
-                <Text
-                  className="text-xl"
-                  style={{ fontFamily: Fonts.SpaceBold }}
-                >
-                  Card
-                </Text>
-                <View className="flex flex-1 flex-row space-x-2 ">
-                  <View className="w-1/2 justify-center space-x-2  flex flex-row  items-center bg-[#EBE8E8] rounded-lg">
-                    <MasterCard withColor />
-                    <Text style={{ fontFamily: Fonts.SpaceLight }}>2736</Text>
-                  </View>
+                <View className="flex flex-col w-full ">
+                  <Text
+                    className="text-xl"
+                    style={{ fontFamily: Fonts.SpaceBold }}
+                  >
+                    Card
+                  </Text>
+                  <TouchableOpacity className="flex flex-row flex-1">
+                    <View className="justify-center space-x-2 w-auto  px-10 flex flex-row  items-center bg-[#EBE8E8] rounded-lg">
+                      <MasterCardColor />
+                      <Text style={{ fontFamily: Fonts.SpaceLight }}>2736</Text>
+                    </View>
+                  </TouchableOpacity>
                 </View>
               </View>
-            </View>
 
-            <TouchableOpacity
-              onPress={closeModal}
-              className="w-full items-center justify-center bg-black p-3 rounded-lg overflow-hidden"
-            >
-              <Text
-                className="text-white"
-                style={{ fontFamily: Fonts.SpaceSemiBold }}
+              <TouchableOpacity
+                onPress={closeModal}
+                className="w-full items-center justify-center bg-black p-3 rounded-lg overflow-hidden"
               >
-                Spent it
-              </Text>
-            </TouchableOpacity>
+                <Text
+                  className="text-white"
+                  style={{ fontFamily: Fonts.SpaceSemiBold }}
+                >
+                  Spent it
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </BottomSheetView>
       </BottomSheetModal>
