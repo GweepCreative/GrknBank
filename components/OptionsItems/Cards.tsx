@@ -18,6 +18,7 @@ import { FlashList } from "@shopify/flash-list";
 import { MasterCardColor } from "../Icons/mastercard";
 import { ScrollView } from "react-native-gesture-handler";
 import CardsListItem from "../CardsListItem";
+import AddNewCard from "./AddNewCard";
 export default function Cards() {
   // ref
   const bottomSheetModalRef = React.useRef<BottomSheetModal>(null);
@@ -58,9 +59,7 @@ export default function Cards() {
           >
             Cards
           </Text>
-          <TouchableOpacity>
-            <CirclePlus color={"#000"} />
-          </TouchableOpacity>
+          <AddNewCard />
         </View>
         <BottomSheetScrollView style={{ margin: 10 }}>
           <FlashList
